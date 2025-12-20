@@ -3,7 +3,7 @@ using UnityEngine;
 public class StockObject : MonoBehaviour
 {
     public StockInfo info;
-    [SerializeField] float moveSpeed;
+    [SerializeField] float moveSpeed = 5f;
     public bool isPlaced;
     public Rigidbody rb;
     public Collider col;
@@ -11,7 +11,8 @@ public class StockObject : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        info = StockInfoController.instance.GetInfo(info.name);
+        //Debug.Log(info.name);
     }
 
     // Update is called once per frame
