@@ -154,6 +154,7 @@ MonoBehaviour:
     name: Aubergine
     typeOfStock: 3
     price: 0
+    stockObject: {fileID: 8189063485497057712}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 199397284143108056}

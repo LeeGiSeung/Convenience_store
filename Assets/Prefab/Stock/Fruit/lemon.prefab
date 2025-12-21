@@ -154,7 +154,7 @@ MonoBehaviour:
     name: Lemon Fruit
     typeOfStock: 3
     price: 0
-    stockObject: {fileID: 0}
+    stockObject: {fileID: 5330776085590805160}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 384184188905456831}

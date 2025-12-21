@@ -154,6 +154,7 @@ MonoBehaviour:
     name: Orange Drink
     typeOfStock: 1
     price: 0
+    stockObject: {fileID: 4657526692273923074}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 4596257474748321641}

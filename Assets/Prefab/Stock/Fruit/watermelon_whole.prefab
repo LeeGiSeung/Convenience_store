@@ -154,6 +154,7 @@ MonoBehaviour:
     name: Watermelon_whole Fruit
     typeOfStock: 4
     price: 13000
+    stockObject: {fileID: 9012287137759406757}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 774790260083829893}

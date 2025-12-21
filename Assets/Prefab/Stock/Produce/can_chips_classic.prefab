@@ -127,6 +127,7 @@ MonoBehaviour:
     name: Classic Chips
     typeOfStock: 2
     price: 0
+    stockObject: {fileID: 119692980520372716}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 3207593695976526209}

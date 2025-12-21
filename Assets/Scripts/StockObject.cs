@@ -12,7 +12,11 @@ public class StockObject : MonoBehaviour
     void Start()
     {
         info = StockInfoController.instance.GetInfo(info.name);
-        //Debug.Log(info.name);
+    }
+
+    void Awake()
+    {
+        //info = StockInfoController.instance.GetInfo(info.name);
     }
 
     // Update is called once per frame

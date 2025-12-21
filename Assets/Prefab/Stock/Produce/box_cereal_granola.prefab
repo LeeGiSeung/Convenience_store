@@ -126,6 +126,7 @@ MonoBehaviour:
     name: Granola Ceareal
     typeOfStock: 0
     price: 0
+    stockObject: {fileID: 5612020642188023178}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 4512576655783725461}

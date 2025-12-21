@@ -154,6 +154,7 @@ MonoBehaviour:
     name: Watermelon_half Fruit
     typeOfStock: 4
     price: 0
+    stockObject: {fileID: 8114821583054757298}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 5124583681723135419}

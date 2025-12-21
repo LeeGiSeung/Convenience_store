@@ -98,8 +98,9 @@ public class ShelfSpaceController : MonoBehaviour
 
             objectsOnShelf.Add(objectToPlace);
 
-            shelfLabel.text = info.price.ToString();
         }
+
+        shelfLabel.text = info.price.ToString();
 
     }
 

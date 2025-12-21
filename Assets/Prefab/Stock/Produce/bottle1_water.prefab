@@ -127,6 +127,7 @@ MonoBehaviour:
     name: Water Drink
     typeOfStock: 1
     price: 0
+    stockObject: {fileID: 7150081528538275376}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 5066212231395501638}

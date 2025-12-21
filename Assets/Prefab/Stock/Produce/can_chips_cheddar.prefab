@@ -127,6 +127,7 @@ MonoBehaviour:
     name: Cheddar Chips
     typeOfStock: 2
     price: 0
+    stockObject: {fileID: 4707958110406327676}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 2878611747955425036}

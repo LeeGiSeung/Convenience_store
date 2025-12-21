@@ -154,6 +154,7 @@ MonoBehaviour:
     name: Lettuce Fruit
     typeOfStock: 4
     price: 0
+    stockObject: {fileID: 755200683698589433}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 872597047581015482}

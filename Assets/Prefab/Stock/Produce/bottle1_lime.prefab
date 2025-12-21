@@ -154,6 +154,7 @@ MonoBehaviour:
     name: Lime Drink
     typeOfStock: 1
     price: 2000
+    stockObject: {fileID: 2771005508634925301}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 1186560220208793690}

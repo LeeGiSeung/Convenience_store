@@ -13,6 +13,11 @@ public class StockInfoController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+    }
+
+    void Awake()
+    {
         instance = this;
 
         allStock.AddRange(foodInfo);

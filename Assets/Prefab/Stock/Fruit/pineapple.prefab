@@ -154,6 +154,7 @@ MonoBehaviour:
     name: Pineapple Fruit
     typeOfStock: 4
     price: 0
+    stockObject: {fileID: 1814550829846373221}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 7981241570300974418}

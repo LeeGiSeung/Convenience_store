@@ -127,6 +127,7 @@ MonoBehaviour:
     name: Bbq Chips
     typeOfStock: 2
     price: 0
+    stockObject: {fileID: 5744602954948225975}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 5683089038982294613}

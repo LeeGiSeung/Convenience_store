@@ -153,6 +153,7 @@ MonoBehaviour:
     name: Apple Fruit
     typeOfStock: 3
     price: 0
+    stockObject: {fileID: 7469154387341973860}
   moveSpeed: 5
   isPlaced: 0
   rb: {fileID: 8599773938854876481}
