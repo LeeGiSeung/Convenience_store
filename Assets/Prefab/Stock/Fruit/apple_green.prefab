@@ -106,7 +106,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.36
   m_Center: {x: 0, y: 0.35, z: 0}
@@ -133,7 +133,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -153,8 +153,9 @@ MonoBehaviour:
     name: Apple Fruit
     typeOfStock: 3
     price: 0
+    currnetPrice: 0
     stockObject: {fileID: 7469154387341973860}
   moveSpeed: 5
-  isPlaced: 0
+  isPlaced: 1
   rb: {fileID: 8599773938854876481}
   col: {fileID: 4754124346638288585}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StockInfoController : MonoBehaviour
@@ -22,6 +23,15 @@ public class StockInfoController : MonoBehaviour
 
         allStock.AddRange(foodInfo);
         allStock.AddRange(produceInfo);
+
+        for(int i = 0; i<allStock.Count; i++)
+        {
+            if(allStock[i].currnetPrice == 0)
+            {
+                allStock[i].currnetPrice = allStock[i].price;
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -43,5 +53,29 @@ public class StockInfoController : MonoBehaviour
         }
 
         return infoToReturn;
+    }
+
+    public void UpdatePrice(string stockName, float newPrice)
+    {
+        for(int i = 0; i<allStock.Count; i++)
+        {
+            if(allStock[i].name == stockName)
+            {
+                allStock[i].currnetPrice = newPrice;
+            }
+        }
+
+        List<ShelfSpaceController> shelves = new List<ShelfSpaceController>();
+
+        shelves.AddRange(FindObjectsByType<ShelfSpaceController>(FindObjectsSortMode.None)); //순서 상관없이 찾기
+
+        foreach(ShelfSpaceController shelf in shelves)
+        {
+            if(shelf.info.name == stockName)
+            {
+                shelf.UpdateDisplayPrice(newPrice);
+            }
+        }
+
     }
 }

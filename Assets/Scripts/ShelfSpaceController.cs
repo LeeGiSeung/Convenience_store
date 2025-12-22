@@ -22,7 +22,7 @@ public class ShelfSpaceController : MonoBehaviour
     {
         bool preventPlacing = true;
         
-        Debug.Log(objectToPlace.info.name);
+        //Debug.Log(objectToPlace.info.name);
 
         if(objectsOnShelf.Count == 0)
         {
@@ -76,6 +76,11 @@ public class ShelfSpaceController : MonoBehaviour
             objectToPlace.transform.SetParent(transform);
             objectToPlace.MakePlaced();
 
+            if(info == null)
+            {
+                Debug.Log("info null");
+                return;
+            }
 
             switch (info.typeOfStock)
                 {
@@ -100,7 +105,8 @@ public class ShelfSpaceController : MonoBehaviour
 
         }
 
-        shelfLabel.text = info.price.ToString();
+        UpdateDisplayPrice(info.currnetPrice);
+        //shelfLabel.text = info.price.ToString();
 
     }
 
@@ -120,5 +126,26 @@ public class ShelfSpaceController : MonoBehaviour
         }
 
         return objectToReturn;
+    }
+
+    public void StartPriceUpdate()
+    {
+        if(objectsOnShelf.Count > 0)
+        {
+            UIController.instance.OpenUpdatePrice(info);
+        }
+    }
+
+    public void UpdateDisplayPrice(float price)
+    {
+
+        if(objectsOnShelf.Count > 0)
+        {
+            info.currnetPrice = price;
+
+            shelfLabel.text = price.ToString();
+        }
+
+        
     }
 }
