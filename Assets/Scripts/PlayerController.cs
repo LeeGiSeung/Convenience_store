@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     public float waitToPlaceStock;
     private float placeStockCounter;
 
+    public LayerMask whatIsBin;
+
     private StockObject heldPickup;
     [SerializeField] float throwForce;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,6 +50,14 @@ public class PlayerController : MonoBehaviour
         if(UIController.instance.updatePricePanel != null)
         {
             if(UIController.instance.updatePricePanel.activeSelf == true)
+            {
+                return;
+            }
+        }
+
+        if(UIController.instance.buyMenuScreen != null)
+        {
+            if(UIController.instance.buyMenuScreen.activeSelf == true)
             {
                 return;
             }
@@ -216,12 +226,27 @@ public class PlayerController : MonoBehaviour
 
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    if(Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
-                    {
-                        heldBox.PlaceStockOnShelf(hit.collider.GetComponent<ShelfSpaceController>());
 
-                        placeStockCounter = waitToPlaceStock;
+                    if(heldBox.stockInBox.Count > 0)
+                    {
+                        if(Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
+                        {
+                            heldBox.PlaceStockOnShelf(hit.collider.GetComponent<ShelfSpaceController>());
+
+                            placeStockCounter = waitToPlaceStock;
+                        }
                     }
+                    else
+                    {
+                        Debug.Log("destory box");
+                        if(Physics.Raycast(ray, out hit, interactionRange, whatIsBin))
+                        {
+                            Destroy(heldBox.gameObject);
+                            Debug.Log("good");
+                            heldBox = null;
+                        }
+                    }
+
                 }
 
                 if (Mouse.current.leftButton.isPressed)

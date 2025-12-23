@@ -134,4 +134,30 @@ public class StockBoxController : MonoBehaviour
         }
     }
 
+    public int GetStockAmount(StockInfo.StockType type)
+    {
+        int toReturn = 0;
+
+        switch (type)
+        {
+            case StockInfo.StockType.bigDrink:
+                toReturn = bigDrinkPoints.Count;
+                break;
+            case StockInfo.StockType.cereal:
+                toReturn = cerealPoints.Count;
+                break;
+            case StockInfo.StockType.fruit:
+                toReturn = fruitPoints.Count;
+                break;
+            case StockInfo.StockType.fruitLarge:
+                toReturn = bigFruitoints.Count;
+                break;
+            case StockInfo.StockType.chipsTube:
+                toReturn = tubeChipsPoints.Count;
+                break;
+        }
+
+        return toReturn;
+    }
+
 }

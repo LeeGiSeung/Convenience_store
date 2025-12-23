@@ -1,5 +1,7 @@
+using System.Net;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -9,14 +11,15 @@ public class UIController : MonoBehaviour
     [SerializeField] public GameObject updatePricePanel;
     [SerializeField] public TMP_Text basePriceText, currentPriceText;
     [SerializeField] public TMP_InputField priceInputField;
-
+    
+    public GameObject buyMenuScreen;
+    public TMP_Text moneyText;
+    
     private StockInfo activeStockInfo;
     private void Awake()
     {
         instance = this;
     }
-
-    
 
     void Start()
     {
@@ -25,7 +28,10 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        {
+            OpenCloseBuyMenu();
+        }
     }
 
     public void OpenUpdatePrice(StockInfo stockToUpdate)
@@ -50,14 +56,32 @@ public class UIController : MonoBehaviour
     public void ApplyPriceUpdate()
     {
         
-            activeStockInfo.currnetPrice = float.Parse(priceInputField.text); //string -> float
+        activeStockInfo.currnetPrice = float.Parse(priceInputField.text); //string -> float
 
-            currentPriceText.text = activeStockInfo.currnetPrice.ToString();
+        currentPriceText.text = activeStockInfo.currnetPrice.ToString();
 
-            StockInfoController.instance.UpdatePrice(activeStockInfo.name, activeStockInfo.currnetPrice);
+        StockInfoController.instance.UpdatePrice(activeStockInfo.name, activeStockInfo.currnetPrice);
 
-            CloseUpdatePrice();
-        
+        CloseUpdatePrice();
+}
 
+    public void UpdateMoney(float currentMoney){
+        moneyText.text = currentMoney.ToString();
+    }
+
+    public void OpenCloseBuyMenu()
+    {
+        if(buyMenuScreen.activeSelf == false)
+        {
+            buyMenuScreen.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            buyMenuScreen.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
