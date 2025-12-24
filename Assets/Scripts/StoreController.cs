@@ -5,7 +5,7 @@ public class StoreController : MonoBehaviour
 {
     public static StoreController instance;
     public float currentMoney = 100000f;
-    public Transform stockSpawnPoint;
+    public Transform stockSpawnPoint, furnitureSpawnPoint;
 
     public void Awake()
     {

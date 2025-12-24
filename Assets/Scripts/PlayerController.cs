@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
 
     private StockObject heldPickup;
     [SerializeField] float throwForce;
+
+    public LayerMask whatIsFurniture;
+    public Transform furniturePoint;
+    public FurnitureController heldFurniture;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -110,7 +115,7 @@ public class PlayerController : MonoBehaviour
         // {
         //     Debug.Log("I no Pickup");
         // }
-        if(heldPickup == null && heldBox == null)
+        if(heldPickup == null && heldBox == null && heldFurniture == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -170,6 +175,22 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            if (Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                Debug.Log("pick Frun Try");
+                if(Physics.Raycast(ray, out hit, interactionRange, whatIsFurniture))
+                {
+                    heldFurniture = hit.transform.GetComponent<FurnitureController>();
+
+                    heldFurniture.transform.SetParent(furniturePoint);
+                    heldFurniture.transform.localPosition = Vector3.zero;
+                    heldFurniture.transform.localRotation = Quaternion.identity;
+
+                    heldFurniture.MakePlaceable();
+
+                    Debug.Log("pick up Frun");
+                }
+            }
         }
         else
         {
@@ -238,11 +259,9 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("destory box");
                         if(Physics.Raycast(ray, out hit, interactionRange, whatIsBin))
                         {
                             Destroy(heldBox.gameObject);
-                            Debug.Log("good");
                             heldBox = null;
                         }
                     }
@@ -264,7 +283,24 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-        }
 
+            if(heldFurniture != null)
+            {
+                heldFurniture.transform.position = new Vector3(furniturePoint.position.x, 0f, furniturePoint.position.z);
+                //heldFurniture.transform.LookAt(transform); //바라보고있는 방향으로 바라보게 하는것
+                heldFurniture.transform.LookAt(new Vector3(transform.position.x, 0f, transform.position.z)); //바라보고있는 방향으로 바라보게 하는것
+
+                Debug.Log("down frun try");
+
+                if(Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.rKey.wasPressedThisFrame)
+                {
+                    heldFurniture.PlaceFurniturare();
+                    heldFurniture.transform.SetParent(null);
+                    heldFurniture = null;
+
+                    Debug.Log("down frun");
+                }
+            }
+        }
     }
 }
