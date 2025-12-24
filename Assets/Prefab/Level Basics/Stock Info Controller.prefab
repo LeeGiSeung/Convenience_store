@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6179505703559970169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6194880974608915396}
+  - component: {fileID: 7564220299420807386}
+  m_Layer: 0
+  m_Name: Stock Info Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6194880974608915396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179505703559970169}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.2258887, y: 5.8975267, z: -2.609924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7564220299420807386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179505703559970169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d316b8eae5a3634e8c0e912f4762a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodInfo:
+  - name: Apple
+    typeOfStock: 3
+    price: 100
+    currnetPrice: 100
+    stockObject: {fileID: 7469154387341973860, guid: 66c6a94cd95ec93428e19b66a5ac3db4, type: 3}
+  - name: Aubergine
+    typeOfStock: 3
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 8189063485497057712, guid: d79566318e3c4a74ca1a44e3dd363c4f, type: 3}
+  - name: Lemon Fruit
+    typeOfStock: 3
+    price: 2000
+    currnetPrice: 0
+    stockObject: {fileID: 5330776085590805160, guid: f0f1730075d249e49808cc30a27088d6, type: 3}
+  - name: Lettuce Fruit
+    typeOfStock: 4
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 755200683698589433, guid: a106f676afc087640971afb8abaa4b20, type: 3}
+  - name: Pineapple Fruit
+    typeOfStock: 4
+    price: 2000
+    currnetPrice: 0
+    stockObject: {fileID: 1814550829846373221, guid: 73b58153355fd7f439aa723f27a15926, type: 3}
+  - name: Watermelon_half Fruit
+    typeOfStock: 4
+    price: 2000
+    currnetPrice: 0
+    stockObject: {fileID: 8114821583054757298, guid: 4e87658ad3dc98d4c9b42f69c45dd08f, type: 3}
+  - name: Watermelon_whole Fruit
+    typeOfStock: 4
+    price: 13000
+    currnetPrice: 0
+    stockObject: {fileID: 9012287137759406757, guid: e2d32730b6847c04d8ebb91b239a834a, type: 3}
+  produceInfo:
+  - name: Cola Drink
+    typeOfStock: 1
+    price: 25555
+    currnetPrice: 0
+    stockObject: {fileID: 8544643061087412207, guid: cf20fa06f25c4f84db56cd961e0542f7, type: 3}
+  - name: Lime Drink
+    typeOfStock: 1
+    price: 2000
+    currnetPrice: 0
+    stockObject: {fileID: 2771005508634925301, guid: 92dfa59ed5ac7074980be3785338a985, type: 3}
+  - name: Orange Drink
+    typeOfStock: 1
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 4657526692273923074, guid: 89103b79a66eb754aa3e71ea0bf7c866, type: 3}
+  - name: Water Drink
+    typeOfStock: 1
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 7150081528538275376, guid: 657f957b05da26b49a1ac535e6cfa89f, type: 3}
+  - name: Granola Ceareal
+    typeOfStock: 0
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 5612020642188023178, guid: 3cc46a0a0cd18af459d0994de0955dd4, type: 3}
+  - name: Rings Cereal
+    typeOfStock: 0
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 1601298906928161324, guid: 1d32da9215238644bb33b074c4aaaf30, type: 3}
+  - name: Bbq Chips
+    typeOfStock: 2
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 4707958110406327676, guid: 1c10e4a0114c27c44aa7102193ac0300, type: 3}
+  - name: Cheddar Chips
+    typeOfStock: 2
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 119692980520372716, guid: c42d1245f2910ef47b86e0e48f6f55b2, type: 3}
+  - name: Onion Chips
+    typeOfStock: 2
+    price: 0
+    currnetPrice: 0
+    stockObject: {fileID: 4598096918442376583, guid: fc86a1fd593374f469445adf00af8581, type: 3}
+  allStock: []

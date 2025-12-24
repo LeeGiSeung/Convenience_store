@@ -11,6 +11,9 @@ public class BuyFurnitureFrameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (priceText == null || furniture == null)
+            return;
+
         priceText.text = "Price : " + furniture.price.ToString();
     }
 
