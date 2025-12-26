@@ -177,7 +177,6 @@ public class PlayerController : MonoBehaviour
 
             if (Keyboard.current.rKey.wasPressedThisFrame)
             {
-                Debug.Log("pick Frun Try");
                 if(Physics.Raycast(ray, out hit, interactionRange, whatIsFurniture))
                 {
                     heldFurniture = hit.transform.GetComponent<FurnitureController>();
@@ -188,7 +187,6 @@ public class PlayerController : MonoBehaviour
 
                     heldFurniture.MakePlaceable();
 
-                    Debug.Log("pick up Frun");
                 }
             }
         }
@@ -290,7 +288,6 @@ public class PlayerController : MonoBehaviour
                 //heldFurniture.transform.LookAt(transform); //바라보고있는 방향으로 바라보게 하는것
                 heldFurniture.transform.LookAt(new Vector3(transform.position.x, 0f, transform.position.z)); //바라보고있는 방향으로 바라보게 하는것
 
-                Debug.Log("down frun try");
 
                 if(Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.rKey.wasPressedThisFrame)
                 {
@@ -298,7 +295,6 @@ public class PlayerController : MonoBehaviour
                     heldFurniture.transform.SetParent(null);
                     heldFurniture = null;
 
-                    Debug.Log("down frun");
                 }
             }
         }

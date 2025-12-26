@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,8 @@ public class StoreController : MonoBehaviour
     public static StoreController instance;
     public float currentMoney = 100000f;
     public Transform stockSpawnPoint, furnitureSpawnPoint;
+
+    public List<FurnitureController> shelvingCases = new List<FurnitureController>();
 
     public void Awake()
     {

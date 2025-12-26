@@ -78,7 +78,6 @@ public class ShelfSpaceController : MonoBehaviour
 
             if(info == null)
             {
-                Debug.Log("info null");
                 return;
             }
 
