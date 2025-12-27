@@ -19,6 +19,8 @@ public class Customer : MonoBehaviour
     private int browsePointsRemain = 5;
     public float browseTime;
 
+    private UnityEngine.Vector3 queuePoint;
+
     public FurnitureController currentShelfCase;
     public enum CustomerState
     {
@@ -98,7 +100,17 @@ public class Customer : MonoBehaviour
                         }
                         else
                         {
-                            StartLeaving();
+                            //StartLeaving();
+                            if(stockInBag.Count > 0)
+                            {
+                                Checkout.instance.AddCustomerToQueue(this);
+                            
+                                currentState = CustomerState.queuing;
+                            }
+                            else
+                            {
+                                StartLeaving();
+                            }
                         }
                     }
 
@@ -110,6 +122,17 @@ public class Customer : MonoBehaviour
             break;
 
             case CustomerState.queuing:
+                transform.position = UnityEngine.Vector3.MoveTowards(transform.position, queuePoint, moveSpeed * Time.deltaTime);
+
+                if(UnityEngine.Vector3.Distance(transform.position, queuePoint) > 0.1f)
+                {
+                    anim.SetBool("isMoving", true);   
+                }
+                else
+                {
+                    anim.SetBool("isMoving", false);   
+                }
+
             break;
 
             case CustomerState.leaving:
@@ -227,6 +250,24 @@ public class Customer : MonoBehaviour
 
         }
 
+    }
+
+    public void UpdateQueuePint(UnityEngine.Vector3 newPoint)
+    {
+        queuePoint = newPoint;
+        transform.LookAt(queuePoint);   
+    }
+
+    public float GetTotalSpend()
+    {
+        float total = 0;
+
+        foreach(StockObject stock in stockInBag)
+        {
+            total += stock.info.currnetPrice;
+        }
+
+        return total;
     }
 }
 
