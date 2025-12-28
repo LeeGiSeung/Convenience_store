@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -15,6 +16,8 @@ public class UIController : MonoBehaviour
     public GameObject buyMenuScreen;
     public TMP_Text moneyText;
     
+    public GameObject pauseScreen;
+
     private StockInfo activeStockInfo;
     private void Awake()
     {
@@ -31,6 +34,11 @@ public class UIController : MonoBehaviour
         if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             OpenCloseBuyMenu();
+        }
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            PauseUnpause();
         }
     }
 
@@ -82,6 +90,38 @@ public class UIController : MonoBehaviour
             buyMenuScreen.SetActive(false);
 
             Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+
+        Time.timeScale = 1f;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PauseUnpause()
+    {
+        if(pauseScreen.activeSelf == false)
+        {
+            pauseScreen.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            pauseScreen.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.Locked;
+
+            Time.timeScale = 1f;
         }
     }
 }

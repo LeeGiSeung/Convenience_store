@@ -114,6 +114,11 @@ public class StockBoxController : MonoBehaviour
             flap1.SetActive(true);
             flap2.SetActive(true);
         }
+
+        if(AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(2);
+        }
     }
 
     public void PlaceStockOnShelf(ShelfSpaceController shelf)

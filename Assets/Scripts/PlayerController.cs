@@ -1,6 +1,6 @@
 using System.ComponentModel;
-using UnityEditor.PackageManager;
-using UnityEditor.ShaderGraph.Internal;
+//using UnityEditor.PackageManager;
+//using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -72,6 +72,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if(UIController.instance.pauseScreen != null)
+        {
+            if(UIController.instance.pauseScreen.activeSelf == true)
+            {
+                return;
+            }
+        }
+
         Vector2 lookinput = lookAcction.action.ReadValue<Vector2>();
         horiRot += lookinput.x * Time.deltaTime * lookSpeed;
         horiRot %= 360f;
@@ -100,6 +108,11 @@ public class PlayerController : MonoBehaviour
             if (jumpAction.action.WasPressedThisFrame())
             {
                 ySpeed = jumpForce;
+
+                    if(AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX(8);
+                    }
             }
         }
 
@@ -132,6 +145,11 @@ public class PlayerController : MonoBehaviour
                     heldPickup.transform.SetParent(holdPoint);
                     heldPickup.Pickup();
 
+                    if(AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX(6);
+                    }
+
                     return;
                 }
 
@@ -145,6 +163,11 @@ public class PlayerController : MonoBehaviour
                     if(heldBox.flap1.activeSelf == true)
                     {
                         heldBox.OpenClose();
+                    }
+
+                    if(AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX(1);
                     }
 
                     return;
@@ -197,6 +220,11 @@ public class PlayerController : MonoBehaviour
 
                     heldFurniture.MakePlaceable();
 
+                    if(AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX(4);
+                    }
+
                 }
             }
         }
@@ -224,6 +252,11 @@ public class PlayerController : MonoBehaviour
                         {
                             heldPickup = null;
                         }
+
+                        if(AudioManager.instance != null)
+                        {
+                            AudioManager.instance.PlaySFX(7);
+                        }
                     }
                 }
 
@@ -234,6 +267,11 @@ public class PlayerController : MonoBehaviour
 
                     heldPickup.transform.SetParent(null);
                     heldPickup = null;
+
+                    if(AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX(9);
+                    }
                 }
             }
 
@@ -246,6 +284,12 @@ public class PlayerController : MonoBehaviour
 
                     heldBox.transform.SetParent(null);
                     heldBox = null;
+
+                    if(AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX(0);
+                    }
+                    
                 }
 
                 if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -263,6 +307,12 @@ public class PlayerController : MonoBehaviour
                             heldBox.PlaceStockOnShelf(hit.collider.GetComponent<ShelfSpaceController>());
 
                             placeStockCounter = waitToPlaceStock;
+
+                            if(AudioManager.instance != null)
+                            {
+                                AudioManager.instance.PlaySFX(7);
+                            }
+
                         }
                     }
                     else
@@ -271,6 +321,11 @@ public class PlayerController : MonoBehaviour
                         {
                             Destroy(heldBox.gameObject);
                             heldBox = null;
+
+                            if(AudioManager.instance != null)
+                            {
+                                AudioManager.instance.PlaySFX(10);
+                            }
                         }
                     }
 
@@ -304,6 +359,11 @@ public class PlayerController : MonoBehaviour
                     heldFurniture.PlaceFurniturare();
                     heldFurniture.transform.SetParent(null);
                     heldFurniture = null;
+
+                    if(AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX(7);
+                    }
 
                 }
             }

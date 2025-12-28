@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Numerics;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
+//using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -70,14 +70,20 @@ public class Customer : MonoBehaviour
                 else
                 {
                     //StartLeaving();
+                    if(StoreController.instance.shelvingCases.Count > 0)
+                    {
+                        currentState = CustomerState.browsing;
 
-                    currentState = CustomerState.browsing;
+                        browsePointsRemain = UnityEngine.Random.Range(1, maxBrowsePoints + 1);
 
-                    browsePointsRemain = UnityEngine.Random.Range(1, maxBrowsePoints + 1);
+                        browsePointsRemain = Math.Clamp(browsePointsRemain, 1, StoreController.instance.shelvingCases.Count);
 
-                    browsePointsRemain = Math.Clamp(browsePointsRemain, 1, StoreController.instance.shelvingCases.Count);
-
-                    GetBrowsePoint();
+                        GetBrowsePoint();
+                    }
+                    else
+                    {
+                        StartLeaving();
+                    }
 
                 } 
                 break;
