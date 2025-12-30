@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,10 @@ public class StoreController : MonoBehaviour
     public Transform stockSpawnPoint, furnitureSpawnPoint;
 
     public List<FurnitureController> shelvingCases = new List<FurnitureController>();
+
+    public float stageTime = 180f;
+
+    public List<float> stageTimeList = new List<float>();
 
     public void Awake()
     {

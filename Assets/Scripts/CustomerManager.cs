@@ -14,6 +14,8 @@ public class CustomerManager : MonoBehaviour
     public float timeBetweenCustomers;
     private float spawnCounter;
     public List<NavPoint> entryPointsLeft, entryPointsRight;
+
+    public List<float> timeBetweenCustomersList = new List<float>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
