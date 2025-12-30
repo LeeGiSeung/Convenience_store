@@ -54,12 +54,9 @@ public class Customer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(points.Count > 0)
-        {
-            MoveToPoint();
-        }
-        */
+
+        
+
         switch (currentState)
         {
             case CustomerState.entering:

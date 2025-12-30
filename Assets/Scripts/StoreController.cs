@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,9 +13,15 @@ public class StoreController : MonoBehaviour
 
     public List<FurnitureController> shelvingCases = new List<FurnitureController>();
 
-    public float stageTime = 180f;
+    public float curStageTime = 0;
+    public float stageTime = 10f;
 
     public List<float> stageTimeList = new List<float>();
+
+    public bool playWave = false;
+
+    public TMP_Text timeValueText;
+    public TMP_Text pressEnterText;
 
     public void Awake()
     {
@@ -26,6 +34,8 @@ public class StoreController : MonoBehaviour
         UIController.instance.UpdateMoney(currentMoney);
 
         AudioManager.instance.StartBGM();
+
+        curStageTime = stageTime;
     }
 
     // Update is called once per frame
@@ -41,6 +51,15 @@ public class StoreController : MonoBehaviour
                 SpendMoney(250f);
             }
         }
+
+        curStageTime -= Time.deltaTime;
+        timeValueText.text = curStageTime.ToString("F1");
+
+        if(curStageTime <= 0f) //stagetime이 0이하가 되면 스테이지 종료
+        {
+            SetTimeValueText_False();
+        }
+
     }
 
     public void AddMoney(float amountToAdd)
@@ -73,4 +92,24 @@ public class StoreController : MonoBehaviour
 
         return hasEnough;
     }
+
+    public void SetTimeValueText_True()
+    {
+        Debug.Log("Start Stage");
+        pressEnterText.gameObject.SetActive(false);
+        timeValueText.gameObject.SetActive(true);
+        playWave = true;
+        
+    }
+
+    public void SetTimeValueText_False()
+    {
+
+        Debug.Log("End Stage");
+        pressEnterText.gameObject.SetActive(true);
+        timeValueText.gameObject.SetActive(false);
+        playWave = false;
+        curStageTime = stageTime;
+    }
+
 }

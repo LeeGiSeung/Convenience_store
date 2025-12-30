@@ -3,6 +3,7 @@ using System.ComponentModel;
 //using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -124,14 +125,15 @@ public class PlayerController : MonoBehaviour
         Ray ray = theCam.ViewportPointToRay(new Vector3(0.5f,0.5f,0f));
         
         RaycastHit hit;
-        // if(Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
-        // {
-        //     Debug.Log("I see a Pickup");
-        // }
-        // else
-        // {
-        //     Debug.Log("I no Pickup");
-        // }
+
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            if (Keyboard.current.enterKey.wasPressedThisFrame && StoreController.instance.playWave == false)
+            {
+                StoreController.instance.SetTimeValueText_True();
+            }
+        }
+
         if(heldPickup == null && heldBox == null && heldFurniture == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)

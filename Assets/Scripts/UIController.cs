@@ -17,7 +17,6 @@ public class UIController : MonoBehaviour
     public TMP_Text moneyText;
     
     public GameObject pauseScreen;
-
     private StockInfo activeStockInfo;
     private void Awake()
     {

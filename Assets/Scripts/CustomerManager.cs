@@ -19,15 +19,19 @@ public class CustomerManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnCustomer();
+        //SpawnCustomer();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (!StoreController.instance.playWave) return; //아직 웨이브 시작안하면 return
+
         spawnCounter -= Time.deltaTime;
         if(spawnCounter <= 0)
         {
+            Debug.Log("Spawn Customer");
             SpawnCustomer();
         }
     }
