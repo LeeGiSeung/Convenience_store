@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class StoreController : MonoBehaviour
 {
@@ -52,8 +53,11 @@ public class StoreController : MonoBehaviour
             }
         }
 
-        curStageTime -= Time.deltaTime;
-        timeValueText.text = curStageTime.ToString("F1");
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            curStageTime -= Time.deltaTime;
+            timeValueText.text = curStageTime.ToString("F1");
+        }
 
         if(curStageTime <= 0f) //stagetime이 0이하가 되면 스테이지 종료
         {

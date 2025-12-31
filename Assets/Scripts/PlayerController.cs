@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] LayerMask whatIsStock;
     [SerializeField] LayerMask whatIsShelf;
+
+    [SerializeField] LayerMask whatIsDoor;
+
     [SerializeField] float interactionRange;
 
     [SerializeField] Transform holdPoint;
@@ -56,7 +59,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if(UIController.instance.updatePricePanel != null)
         {
             if(UIController.instance.updatePricePanel.activeSelf == true)
@@ -80,7 +83,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-
+        
         Vector2 lookinput = lookAcction.action.ReadValue<Vector2>();
         horiRot += lookinput.x * Time.deltaTime * lookSpeed;
         horiRot %= 360f;
@@ -131,6 +134,20 @@ public class PlayerController : MonoBehaviour
             if (Keyboard.current.enterKey.wasPressedThisFrame && StoreController.instance.playWave == false)
             {
                 StoreController.instance.SetTimeValueText_True();
+            }
+        }
+
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Debug.Log("1");
+            if (Keyboard.current.eKey.wasPressedThisFrame && Door.instance.canMoveShopScene)
+            {
+                Debug.Log("2");
+                if(Physics.Raycast(ray, out hit, interactionRange, whatIsDoor))
+                {
+                    Debug.Log("3");
+                    hit.collider.GetComponent<Door>().LoadShopScene();
+                }
             }
         }
 

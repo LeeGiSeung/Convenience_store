@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour
     public GameObject buyMenuScreen;
     public TMP_Text moneyText;
     
+    public TMP_Text ePressText;
+
     public GameObject pauseScreen;
     private StockInfo activeStockInfo;
     private void Awake()
