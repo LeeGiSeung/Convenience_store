@@ -97,7 +97,6 @@ public class StoreController : MonoBehaviour
     {
         Debug.Log("Start Stage");
         pressEnterText.gameObject.SetActive(false);
-        timeValueText.gameObject.SetActive(true);
         playWave = true;
         
     }
@@ -107,7 +106,6 @@ public class StoreController : MonoBehaviour
 
         Debug.Log("End Stage");
         pressEnterText.gameObject.SetActive(true);
-        timeValueText.gameObject.SetActive(false);
         playWave = false;
         curStageTime = stageTime;
     }

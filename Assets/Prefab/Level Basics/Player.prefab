@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7570703602625940603}
   - component: {fileID: 3399273216634964758}
   - component: {fileID: 1237812926793021382}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveSpeed: 3
+  moveSpeed: 10
   characterController: {fileID: 1237812926793021382}
   ySpeed: 0
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -79,6 +79,9 @@ MonoBehaviour:
     m_Bits: 1024
   furniturePoint: {fileID: 5528370236534973613}
   heldFurniture: {fileID: 0}
+  whatIsCheckout:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!143 &1237812926793021382
 CharacterController:
   m_ObjectHideFlags: 0
