@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         
         RaycastHit hit;
 
-        if(SceneManager.GetActiveScene().buildIndex == 1)
+        if(SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 3) //sample 맵이거나 shop 맵일때
         {
             if (Keyboard.current.enterKey.wasPressedThisFrame && StoreController.instance.playWave == false)
             {
@@ -137,19 +137,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            Debug.Log("1");
-            if (Keyboard.current.eKey.wasPressedThisFrame && Door.instance.canMoveShopScene)
-            {
-                Debug.Log("2");
-                if(Physics.Raycast(ray, out hit, interactionRange, whatIsDoor))
-                {
-                    Debug.Log("3");
-                    hit.collider.GetComponent<Door>().LoadShopScene();
-                }
-            }
-        }
+
 
         if(heldPickup == null && heldBox == null && heldFurniture == null)
         {

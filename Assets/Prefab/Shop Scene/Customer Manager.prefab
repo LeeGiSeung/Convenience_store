@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4788494570796340340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8776796595537637264}
+  - component: {fileID: 7909472767824096811}
+  m_Layer: 0
+  m_Name: Customer Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8776796595537637264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788494570796340340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.8878584, y: 14.988754, z: -18.12113}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7909472767824096811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788494570796340340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089f2342bacf4384b98423e283eb6d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customersToSpawn:
+  - {fileID: 9137135710735382991, guid: dfc1ccc31923e8144ae1921e588b8959, type: 3}
+  - {fileID: 2247132575062089558, guid: f3ec024ae18094c429ee60c97f76f10b, type: 3}
+  - {fileID: 2247132575062089558, guid: 24c0b3d41189cea4f9d3d7bfe5153797, type: 3}
+  - {fileID: 2247132575062089558, guid: 70f66da56f86cd343aa1f7571600d38f, type: 3}
+  - {fileID: 2247132575062089558, guid: 78256f5d96458a849916e072f35344b7, type: 3}
+  - {fileID: 994633570771613983, guid: 6133532410c065e4d9435e328571d580, type: 3}
+  - {fileID: 1824601991801233375, guid: 5290554aa2219cd48a68cf0b89744cd9, type: 3}
+  - {fileID: 1824601991801233375, guid: a87e587a9c0e8ff4ab8f90075044c6dc, type: 3}
+  - {fileID: 1824601991801233375, guid: 9dab1a01399773c49a7207cd29e9be39, type: 3}
+  - {fileID: 1824601991801233375, guid: 77054d204a5681c4fb3b16f1a3c29db7, type: 3}
+  - {fileID: 1824601991801233375, guid: 6e824bde8b149ef4bb59e66cbc7f0df4, type: 3}
+  - {fileID: 1824601991801233375, guid: 8c316c15d3c78914bb5e41cebe42fc95, type: 3}
+  - {fileID: 1824601991801233375, guid: 295cb496c9b6bc14baf6bd5205bc6ab7, type: 3}
+  - {fileID: 1824601991801233375, guid: 146b4785cf5804a49891cef4f8bab657, type: 3}
+  - {fileID: 1824601991801233375, guid: 8403ac753b2c0824bab33f93a4bb7788, type: 3}
+  - {fileID: 1824601991801233375, guid: 0188c5236dcf25e4980f06bafedd1afc, type: 3}
+  timeBetweenCustomers: 10
+  entryPointsLeft:
+  - point: {fileID: 0}
+    waitTime: 0
+  - point: {fileID: 0}
+    waitTime: 1
+  - point: {fileID: 0}
+    waitTime: 0
+  - point: {fileID: 0}
+    waitTime: 1
+  entryPointsRight:
+  - point: {fileID: 0}
+    waitTime: 0
+  - point: {fileID: 0}
+    waitTime: 1
+  - point: {fileID: 0}
+    waitTime: 0
+  - point: {fileID: 0}
+    waitTime: 1
+  timeBetweenCustomersList: []

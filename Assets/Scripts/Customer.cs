@@ -5,6 +5,7 @@ using System.Numerics;
 using Unity.VisualScripting;
 //using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class Customer : MonoBehaviour
 {
@@ -55,8 +56,6 @@ public class Customer : MonoBehaviour
     void Update()
     {
 
-        
-
         switch (currentState)
         {
             case CustomerState.entering:
@@ -66,7 +65,6 @@ public class Customer : MonoBehaviour
                 }
                 else
                 {
-                    //StartLeaving();
                     if(StoreController.instance.shelvingCases.Count > 0)
                     {
                         currentState = CustomerState.browsing;
@@ -86,12 +84,14 @@ public class Customer : MonoBehaviour
                 break;
             case CustomerState.browsing:
                 MoveToPoint();
+                
+
 
                 if(points.Count == 0)
                 {
                     if(hasGrab == false)
                     {
-                        GrabStock();
+                        if(!GrabStock()) StartLeaving();
                     }
                     else
                     {
@@ -230,9 +230,9 @@ public class Customer : MonoBehaviour
 
     }
 
-    public void GrabStock()
+    public bool GrabStock()
     {
-        shoppingBag.SetActive(true);
+        bool result = false;
 
         int shelf = UnityEngine.Random.Range(0, currentShelfCase.shelves.Count);
 
@@ -240,6 +240,8 @@ public class Customer : MonoBehaviour
 
         if(stock != null)
         {
+            Debug.Log("grab stock "+stock.name);
+            shoppingBag.SetActive(true);
             hasGrab = true;
             stock.transform.SetParent(shoppingBag.transform);
             stockInBag.Add(stock);
@@ -250,9 +252,14 @@ public class Customer : MonoBehaviour
             points[0].point = currentShelfCase.standPoint;
             points[0].waitTime = waitAfterGrabbing * UnityEngine.Random.Range(.75f,1.25f);
             currentWaitTime = points[0].waitTime;
-
+            result = true;
+            return result;
         }
-
+        else
+        {
+            Debug.Log("no grab");
+            return result;
+        }
     }
 
     public void UpdateQueuePint(UnityEngine.Vector3 newPoint)
