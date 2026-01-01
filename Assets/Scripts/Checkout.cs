@@ -30,7 +30,7 @@ public class Checkout : MonoBehaviour
     {
         if(customersInQueue.Count > 0 && checkoutScreen.activeSelf == false)
         {
-            if(Vector3.Distance(customersInQueue[0].transform.position ,queuePoint.position) < .1f)
+            if(Vector3.Distance(customersInQueue[0].transform.position ,queuePoint.position) < .3f)
             {
                 ShowPrice(customersInQueue[0].GetTotalSpend());
             }
@@ -68,8 +68,6 @@ public class Checkout : MonoBehaviour
             }
 
         }
-
-        
     }
 
     public void AddCustomerToQueue(Customer newCust)

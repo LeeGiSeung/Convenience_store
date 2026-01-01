@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class CustomerManager : MonoBehaviour
     public float timeBetweenCustomers;
     private float spawnCounter;
     public List<NavPoint> entryPointsLeft, entryPointsRight;
+
+    public List<Transform> entrySpawnPoint = new List<Transform>();
 
     public List<float> timeBetweenCustomersList = new List<float>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,32 +34,50 @@ public class CustomerManager : MonoBehaviour
         spawnCounter -= Time.deltaTime;
         if(spawnCounter <= 0)
         {
-            Debug.Log("Spawn Customer");
             SpawnCustomer();
         }
     }
 
     public void SpawnCustomer()
     {
-        Instantiate(customersToSpawn[Random.Range(0, customersToSpawn.Count)]);
+
+        // Instantiate(customersToSpawn[Random.Range(0, customersToSpawn.Count)]);
+
+        // spawnCounter = timeBetweenCustomers * Random.Range(.75f, 1.25f);
+        
+        Transform spawn = entrySpawnPoint[Random.Range(0, entrySpawnPoint.Count)];
+
+        Vector3 spawnPos = spawn.position;
+
+        if (NavMesh.SamplePosition(spawnPos, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+        {
+            Customer customer = Instantiate(
+                customersToSpawn[Random.Range(0, customersToSpawn.Count)],
+                hit.position,
+                Quaternion.identity
+            );
+
+            customer.SetPoints(GetEntryPoints());
+        }
 
         spawnCounter = timeBetweenCustomers * Random.Range(.75f, 1.25f);
-    }
+        }
 
     public List<NavPoint> GetEntryPoints()
     {
-        List<NavPoint> points = new List<NavPoint>();
+        
+        List<NavPoint> newPoints = new List<NavPoint>();
 
         if(Random.value < .5f)
         {
-            points.AddRange(entryPointsLeft);
+            newPoints.AddRange(entryPointsLeft);
         }
         else
         {
-            points.AddRange(entryPointsRight);
+            newPoints.AddRange(entryPointsRight);
         }
 
-        return points;
+        return newPoints;
     }
 
     public List<NavPoint> GetExitPoints()

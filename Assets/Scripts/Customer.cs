@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Numerics;
 using Unity.VisualScripting;
+using UnityEditor.Analytics;
+
 //using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Analytics;
 
 public class Customer : MonoBehaviour
 {
-
+    float dis;
     public List<NavPoint> points = new List<NavPoint>();
     public float moveSpeed = 3f;
     private float currentWaitTime = .5f;
@@ -34,12 +37,12 @@ public class Customer : MonoBehaviour
     public float waitAfterGrabbing = .5f;
 
     public List<StockObject> stockInBag = new List<StockObject>();
-
+    NavMeshAgent navMesh;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        points.Clear();
-        points.AddRange(CustomerManager.instance.GetEntryPoints());
+        //points.Clear();
+        //points.AddRange(CustomerManager.instance.GetEntryPoints());
 
         if(points.Count > 0)
         {
@@ -47,7 +50,8 @@ public class Customer : MonoBehaviour
 
             currentWaitTime = points[0].waitTime;
         }
-        
+
+        navMesh = GetComponent<NavMeshAgent>();
         //points.AddRange(CustomerManager.instance.GetExitPoints());
 
     }
@@ -84,8 +88,6 @@ public class Customer : MonoBehaviour
                 break;
             case CustomerState.browsing:
                 MoveToPoint();
-                
-
 
                 if(points.Count == 0)
                 {
@@ -125,14 +127,24 @@ public class Customer : MonoBehaviour
             break;
 
             case CustomerState.queuing:
-                transform.position = UnityEngine.Vector3.MoveTowards(transform.position, queuePoint, moveSpeed * Time.deltaTime);
+                //transform.position = UnityEngine.Vector3.MoveTowards(transform.position, queuePoint, moveSpeed * Time.deltaTime);
+                UnityEngine.Vector3 targetPosition = queuePoint;
 
-                if(UnityEngine.Vector3.Distance(transform.position, queuePoint) > 0.1f)
+                //NavMesh 위 좌표로 보정
+                if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 2.0f, NavMesh.AllAreas))
                 {
+                    navMesh.speed = moveSpeed;
+                    navMesh.SetDestination(hit.position);
+                }
+                dis = UnityEngine.Vector3.Distance(transform.position, queuePoint);
+                if(UnityEngine.Vector3.Distance(transform.position, queuePoint) > 0.3f)
+                {
+                    Debug.Log("is moving yes");
                     anim.SetBool("isMoving", true);   
                 }
                 else
                 {
+                    Debug.Log("is moving false");
                     anim.SetBool("isMoving", false);   
                 }
 
@@ -156,16 +168,30 @@ public class Customer : MonoBehaviour
     public void MoveToPoint()
     {   
         
+        if (!navMesh.isActiveAndEnabled) return;
+        if (!navMesh.isOnNavMesh) return;
+
         if(points.Count > 0)
         {
-        
+
             bool isMoving = true;
             
-            UnityEngine.Vector3 targetPosition = new UnityEngine.Vector3(points[0].point.position.x, transform.position.y, points[0].point.position.z);
+            //UnityEngine.Vector3 targetPosition = new UnityEngine.Vector3(points[0].point.position.x, transform.position.y, points[0].point.position.z);
 
-            transform.position = UnityEngine.Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            //transform.position = UnityEngine.Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            
+            UnityEngine.Vector3 targetPosition = points[0].point.position;
 
-            transform.LookAt(targetPosition);
+            // 🔥 NavMesh 위 좌표로 보정
+            if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, 2.0f, NavMesh.AllAreas))
+            {
+                navMesh.speed = moveSpeed;
+                navMesh.SetDestination(hit.position);
+
+            }
+
+            //transform.LookAt(targetPosition);
+
             if(UnityEngine.Vector3.Distance(transform.position, targetPosition) < .25f)
             {
                 isMoving = false;
@@ -211,6 +237,8 @@ public class Customer : MonoBehaviour
         points.AddRange(CustomerManager.instance.GetExitPoints());
 
         currentWaitTime = points[0].waitTime;
+
+        Debug.Log("Leaving");
     }
 
     void GetBrowsePoint()
@@ -278,6 +306,17 @@ public class Customer : MonoBehaviour
         }
 
         return total;
+    }
+
+    public void SetPoints(List<NavPoint> points)
+    {
+        this.points = new List<NavPoint>(points); // 깊은 복사 ⭐
+
+        if (points.Count > 0 && navMesh != null && navMesh.isOnNavMesh)
+        {
+            navMesh.speed = moveSpeed;
+            navMesh.SetDestination(points[0].point.position);
+        }
     }
 }
 
